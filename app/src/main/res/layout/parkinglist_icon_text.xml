@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/gradient_bg" >
+    
+    <TextView android:id="@+id/place"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingTop="6dip" 
+              android:paddingLeft="6dip"
+              android:textSize="8pt"
+              android:textStyle="bold"/>
+    
+	<TextView android:id="@+id/current_tc"
+		    android:layout_width="wrap_content"
+		    android:layout_height="28dip"
+		    android:layout_alignLeft="@id/place"
+		    android:layout_below="@id/place"   
+		    android:paddingBottom="6dip"
+		    android:paddingLeft="6dip"
+		    android:gravity="center_vertical"
+		    android:textSize="5pt" />		
+	<TextView android:id="@+id/car"
+			  android:layout_width="40dip"
+			  android:layout_height="wrap_content"
+			  android:layout_alignBaseline="@id/place"
+			  android:layout_alignBottom="@id/place"
+			  android:layout_alignParentRight="true"
+			  android:textSize="6pt"
+			  android:textStyle="bold"
+			  android:textColor="#00AA00"/>
+	
+	<ImageView android:id="@+id/car_icon"
+		       android:layout_width="32dip"
+		       android:layout_height="32dip"
+		       android:layout_alignTop="@+id/place"
+		       android:layout_toLeftOf="@+id/car"
+		       android:paddingTop="6dip" 
+		       android:src="@drawable/car_64" />
+	
+	<TextView android:id="@+id/motor"
+	    	  android:layout_width="40dip"
+              android:layout_height="28dip"
+              android:layout_alignBaseline="@id/current_tc"
+			  android:layout_alignBottom="@id/current_tc"
+			  android:layout_alignParentRight="true" 
+			  android:gravity="center_vertical"
+			  android:textSize="6pt"
+			  android:textStyle="bold"
+			  android:textColor="#00AA00"/>
+	
+	<ImageView android:id="@+id/motor_icon"
+	           android:layout_width="32dip"
+	           android:layout_height="32dip"
+			   android:layout_alignTop="@id/current_tc"
+			   android:layout_toLeftOf="@id/motor" 
+			   android:paddingBottom="6dip"
+			   android:src="@drawable/motor_64" />
+	
+</RelativeLayout>

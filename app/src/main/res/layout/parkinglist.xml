@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView android:id="@+id/place"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="8pt"
+              android:textStyle="bold"/>
+    
+	<TextView android:id="@+id/current_tc"
+	          android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/place"
+              android:layout_alignLeft="@id/place" 
+              android:textSize="5pt"/>"
+	
+	<TextView
+			  android:id="@+id/car"
+			  android:layout_width="71dip"
+			  android:layout_height="wrap_content"
+			  android:layout_alignBaseline="@+id/place"
+			  android:layout_alignBottom="@+id/place"
+			  android:layout_alignParentRight="true"
+			  android:textSize="5pt"/>
+	
+	<TextView android:id="@+id/motor"
+	    	  android:layout_width="83dip"
+              android:layout_height="wrap_content"
+              android:layout_alignBaseline="@+id/current_tc"
+			  android:layout_alignBottom="@+id/current_tc"
+			  android:layout_alignParentRight="true" 
+			  android:textSize="5pt"/>
+	
+</RelativeLayout>

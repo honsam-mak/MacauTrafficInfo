@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">澳門交通資訊</string>
+    <string name="action_about">關於</string>
+    <string name="camera">路面即時資訊</string>
+    <string name="parking">停車場即時資訊</string>
+    <string name="detour">交通改道資訊</string>
+
+    <string-array name="camera_arrays">
+        <item>新馬路與巴素打爾古街交界</item>
+        <item>高偉樂街與荷蘭園大馬路交界</item>
+        <item>提督馬路與高士德大馬路交界</item>
+        <item>美副將大馬路與士多鳥拜斯大馬路交界</item>
+        <item>亞馬喇前地</item>
+        <item>馬場北大馬路</item>
+        <item>北安圓形地</item>
+        <item>外港客運碼頭 A</item>
+        <item>外港客運碼頭 B</item>
+        <item>殷皇子大馬路與南灣大馬路交界路口</item>
+        <item>水坑尾街與南灣大馬路交界路口</item>
+        <item>西灣大橋氹仔端</item>
+        <item>西灣大橋澳門端</item>
+        <item>友誼大橋近港澳碼頭出口交匯處</item>
+        <item>友誼大橋近北安入口交匯處</item>
+    </string-array>
+
+    <string name="loadingText">Loading...</string>
+    <string name="about_dialog_title">關於 澳門交通資訊</string>
+    <string name="about_dialog_asset">about_text.txt</string>
+    <string name="text_copyright">Copyright ©2011–2014 MaksAppLab. All rights reserved.</string>
+    <string name="text_no_network">請開啓網路後才使用本軟體</string>
+
+</resources>
