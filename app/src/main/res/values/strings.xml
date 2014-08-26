@@ -10,6 +10,8 @@
 
     <string-array name="camera_arrays">
         <item>新馬路與巴素打爾古街交界</item>
+        <item>松山隧道高士德方向</item>
+        <item>松山隧道羅理基方向</item>
         <item>高偉樂街與荷蘭園大馬路交界</item>
         <item>提督馬路與高士德大馬路交界</item>
         <item>美副將大馬路與士多鳥拜斯大馬路交界</item>
@@ -22,8 +24,8 @@
         <item>水坑尾街與南灣大馬路交界路口</item>
         <item>西灣大橋氹仔端</item>
         <item>西灣大橋澳門端</item>
-        <item>友誼大橋近港澳碼頭出口交匯處</item>
         <item>友誼大橋近北安入口交匯處</item>
+        <item>友誼大橋近港澳碼頭出口交匯處</item>
     </string-array>
 
     <string name="loadingText">Loading...</string>

@@ -1,17 +1,13 @@
 package com.simetech.macautrafficinfo.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.ViewGroup;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +19,6 @@ import android.widget.Toast;
 import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.controller.NetworkController;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
-
-import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
-import kankan.wheel.widget.OnWheelChangedListener;
-import kankan.wheel.widget.OnWheelScrollListener;
-import kankan.wheel.widget.WheelView;
 
 public class MainActivity extends Activity {
 
@@ -60,7 +51,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				
 				if (isNetworkConnected) {
-					startActivity(new Intent(MainActivity.this, RealCamActivity.class));
+					startActivity(new Intent(MainActivity.this, LiveCamActivity.class));
 
 				} else
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_no_network), Toast.LENGTH_LONG).show();

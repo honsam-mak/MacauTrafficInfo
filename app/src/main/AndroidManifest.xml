@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.RealCamActivity"
+            android:name=".activity.LiveCamActivity"
             android:label="@string/camera" />
         <activity
             android:name=".activity.ParkingInfoActivity"

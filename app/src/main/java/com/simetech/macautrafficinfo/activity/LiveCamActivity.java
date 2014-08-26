@@ -18,7 +18,7 @@ import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 
 import static com.simetech.macautrafficinfo.constant.MtiConstants.LOCATION_ID;
 
-public class RealCamActivity extends MtiFragmentActivity {
+public class LiveCamActivity extends MtiFragmentActivity {
 
     private boolean scrolling = false;
 
