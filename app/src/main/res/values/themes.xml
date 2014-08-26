@@ -2,20 +2,35 @@
 <resources>
     <!-- the theme applied to the application or activity -->
     <style name="DarkRedActionBarTheme"
-        parent="android:Theme.Holo.Light">
+        parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/DarkRedActionBar</item>
         <item name="android:popupMenuStyle">@style/DarkRedPopupMenu</item>
+        <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.DarkActionBar.Widget</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="DarkRedActionBar"
         parent="android:Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@drawable/darkred_action_bar_background</item>
+        <item name="android:titleTextStyle">@style/ActionBarTitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="ActionBarTitleText"
+        parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#F0F0F0</item>
     </style>
 
     <!-- PopMenu styles -->
     <style name="DarkRedPopupMenu"
-        parent="android:Widget.Holo.Light.ListPopupWindow">
+        parent="android:Widget.Holo.ListPopupWindow">
         <item name="android:popupBackground">#992222</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.DarkActionBar.Widget"
+        parent="android:Theme.Holo">
+        <item name="android:popupMenuStyle">@style/DarkRedPopupMenu</item>
     </style>
 </resources>
