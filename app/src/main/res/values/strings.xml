@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">澳門交通資訊</string>
+    <string name="app_title">交通資訊@Macau</string>
     <string name="action_about">關於</string>
     <string name="camera">路面即時資訊</string>
     <string name="parking">停車場即時資訊</string>
@@ -28,7 +29,7 @@
     <string name="loadingText">Loading...</string>
     <string name="about_dialog_title">關於 澳門交通資訊</string>
     <string name="about_dialog_asset">about_text.txt</string>
-    <string name="text_copyright">Copyright ©2011–2014 MaksAppLab. All rights reserved.</string>
+    <string name="text_copyright">Copyright ©2013–2014 MaksAppLab. All rights reserved.</string>
     <string name="text_no_network">請開啓網路後才使用本軟體</string>
 
 </resources>

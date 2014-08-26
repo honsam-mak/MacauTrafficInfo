@@ -1,53 +1,57 @@
 package com.simetech.macautrafficinfo.activity;
 
-import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
-import android.animation.ObjectAnimator;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.ViewGroup;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.simetech.macautrafficinfo.R;
+import com.simetech.macautrafficinfo.controller.NetworkController;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
+
+import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
+import kankan.wheel.widget.OnWheelChangedListener;
+import kankan.wheel.widget.OnWheelScrollListener;
+import kankan.wheel.widget.WheelView;
 
 public class MainActivity extends Activity {
 
 	private boolean isNetworkConnected = false;
+    private boolean scrolling = false;
 	
-	private Interpolator accelerator = new AccelerateInterpolator();
-	private Interpolator decelerator = new DecelerateInterpolator();
-	private LinearLayout maincontainer;
+	private LinearLayout mainContainer;
+
+    private NetworkController nc = new NetworkController();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		maincontainer = (LinearLayout) findViewById(R.id.maincontainer);
+
+		mainContainer = (LinearLayout) findViewById(R.id.maincontainer);
 		
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        
-        initNetwork();
-        
+
+        isNetworkConnected = nc.isNetworkOn((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE));
+
 		TextView rtCamera = (TextView) this.findViewById(R.id.button1);
 		
 		rtCamera.setOnClickListener(new OnClickListener() {
@@ -56,7 +60,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				
 				if (isNetworkConnected) {
-					flipit();
 					startActivity(new Intent(MainActivity.this, RealCamActivity.class));
 
 				} else
@@ -73,7 +76,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				
 				if (isNetworkConnected) {
-					flipit();
 					startActivity(new Intent(MainActivity.this, ParkingInfoActivity.class));
 				}else
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_no_network), Toast.LENGTH_LONG).show();
@@ -89,7 +91,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				
 				if (isNetworkConnected) {
-					flipit();
 					startActivity(new Intent(MainActivity.this, DetourInfoActivity.class));
 				}else
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_no_network), Toast.LENGTH_LONG).show();
@@ -114,51 +115,5 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	private void initNetwork() {
-		
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if(netInfo != null && netInfo.isConnected())
-			isNetworkConnected = true;
-	}
-		
-	private void flipit() {
-		
-		ObjectAnimator visToInvis = ObjectAnimator.ofFloat(maincontainer, "rotationY", 0f, -90f);
-		visToInvis.setDuration(1000);
-		visToInvis.setInterpolator(accelerator);
-
-		final ObjectAnimator invisToVis = ObjectAnimator.ofFloat(maincontainer, "rotationY", 90f, 0f);
-		invisToVis.setDuration(1000);
-		invisToVis.setInterpolator(decelerator);
-		
-		visToInvis.addListener(new AnimatorListener() {
-
-			@Override
-			public void onAnimationCancel(Animator animation) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				invisToVis.start();
-			}
-
-			@Override
-			public void onAnimationRepeat(Animator animation) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onAnimationStart(Animator animation) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		visToInvis.start();
 	}
 }

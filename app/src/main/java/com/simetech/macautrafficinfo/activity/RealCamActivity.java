@@ -1,121 +1,111 @@
 package com.simetech.macautrafficinfo.activity;
 
-import android.app.ActionBar;
 import android.app.DialogFragment;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
 import com.simetech.macautrafficinfo.fragment.RealCamWebFragment;
 
-public class RealCamActivity extends FragmentActivity implements
-		ActionBar.OnNavigationListener {
+import kankan.wheel.widget.OnWheelChangedListener;
+import kankan.wheel.widget.OnWheelScrollListener;
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 
-	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+import static com.simetech.macautrafficinfo.constant.MtiConstants.LOCATION_ID;
 
-	private static final int locationId[] = { 68, //title_section1
-		                                      67, //title_section2
-		                                      66, //title_section3
-		                                      65, //title_section4
-		                                      62, //title_section5
-		                                      61, //title_section6
-		                                      60, //title_section7
-		                                      59, //title_section8
-		                                      58, //title_section9
-		                                      49, //title_section10
-		                                      50, //title_section11
-		                                      64, //title_section12
-		                                      63, //title_section13
-		                                      51, //title_section14
-		                                      52, //title_section15
-										    };
-	
-	
+public class RealCamActivity extends MtiFragmentActivity {
+
+    private boolean scrolling = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_camera);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        initWheel(R.id.cam_station);
+	}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                DialogFragment newFragment = AboutFragment.newInstance();
+                newFragment.show(getFragmentManager(), "dialog");
+
+                return true;
         }
-        
-		// Set up the action bar to show a dropdown list.
-		final ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        return super.onOptionsItemSelected(item);
+    }
 
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		
-		// Set up the dropdown list navigation in the action bar.
-		actionBar.setListNavigationCallbacks(
-		// Specify a SpinnerAdapter to populate the dropdown list.
-				new ArrayAdapter<String>(actionBar.getThemedContext(),
-						R.layout.dropdownlist,
-						android.R.id.text1, getResources().getStringArray(R.array.camera_arrays)), this);
-				
-	}
+    private final OnWheelScrollListener scrolledListener = new OnWheelScrollListener() {
+        @Override
+        public void onScrollingStarted(WheelView wheel) {
+            scrolling = true;
+        }
 
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		// Restore the previously serialized current dropdown position.
-		if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
-			getActionBar().setSelectedNavigationItem(
-					savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
-		}
-	}
+        @Override
+        public void onScrollingFinished(WheelView wheel) {
+            scrolling = false;
+            updateWebImage(wheel.getCurrentItem());
+        }
+    };
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// Serialize the current dropdown position.
-		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar()
-				.getSelectedNavigationIndex());
-	}
+    private final OnWheelChangedListener changedListener = new OnWheelChangedListener() {
+        @Override
+        public void onChanged(WheelView wheel, int oldValue, int newValue) {
+            Log.d("Camera", "onChanged, wheelScrolled = " + scrolling);
+            if(!scrolling) {
+                //TODO: update status
+            }
+        }
+    };
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-	}
+    private void updateWebImage(int index) {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			onBackPressed();
-			
-			return true;
-		case R.id.action_about:
-			DialogFragment newFragment = AboutFragment.newInstance();
-			newFragment.show(getFragmentManager(), "dialog");
-			
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	@Override
-	public boolean onNavigationItemSelected(int position, long id) {
-		// When the given dropdown item is selected, show its contents in the
-		// container view.
-		
-		Fragment fragment = new RealCamWebFragment();
-		Bundle args = new Bundle();
-		args.putInt(RealCamWebFragment.ARG_SECTION_NUMBER, locationId[position]);
-		fragment.setArguments(args);
-		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-		
-		return true;
-	}
+        Fragment fragment = new RealCamWebFragment();
+        Bundle args = new Bundle();
+        args.putInt(RealCamWebFragment.ARG_SECTION_NUMBER, LOCATION_ID[index]);
+        fragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
+    }
+
+    private void initWheel(int id) {
+        WheelView wheel = (WheelView) findViewById(id);
+        wheel.setVisibleItems(5);
+        wheel.setCurrentItem(0);
+        wheel.setViewAdapter(new StationAdapter(this));
+        wheel.addChangingListener(changedListener);
+        wheel.addScrollingListener(scrolledListener);
+
+        updateWebImage(0);
+    }
+
+    private class StationAdapter extends AbstractWheelTextAdapter {
+
+        private String stations[] = getResources().getStringArray(R.array.camera_arrays);
+
+        protected StationAdapter(Context context) {
+            super(context);
+
+            setTextColor(0xFFFF8000);
+            setTextSize(18);
+        }
+
+        @Override
+        public int getItemsCount() {
+            return stations.length;
+        }
+
+        @Override
+        protected CharSequence getItemText(int index) {
+            return stations[index];
+        }
+    }
 }
