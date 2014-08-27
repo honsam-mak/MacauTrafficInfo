@@ -7,11 +7,9 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
-import com.simetech.macautrafficinfo.fragment.RealCamWebFragment;
+import com.simetech.macautrafficinfo.fragment.LiveCamWebFragment;
 
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.OnWheelScrollListener;
@@ -78,9 +76,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
      */
     private void updateWebImage(int index) {
 
-        Fragment fragment = new RealCamWebFragment();
+        Fragment fragment = new LiveCamWebFragment();
         Bundle args = new Bundle();
-        args.putInt(RealCamWebFragment.ARG_SECTION_NUMBER, LOCATION_ID[index]);
+        args.putInt(LiveCamWebFragment.ARG_SECTION_NUMBER, LOCATION_ID[index]);
         fragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 

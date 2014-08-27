@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class RealCamWebFragment extends Fragment {
+public class LiveCamWebFragment extends Fragment {
 
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	
@@ -28,7 +28,7 @@ public class RealCamWebFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View mainView = inflater.inflate(R.layout.webview_realcam, container, false);
+		View mainView = inflater.inflate(R.layout.webview_livecam, container, false);
 		
 		final ProgressBar progressHorizontal = (ProgressBar) mainView.findViewById(R.id.cam_progress);
 		
