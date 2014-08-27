@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
 
@@ -15,6 +17,9 @@ import com.simetech.macautrafficinfo.fragment.AboutFragment;
  * Created by honsam on 8/25/14.
  */
 public class MtiFragmentActivity extends FragmentActivity {
+
+    private AdView adView;
+    private static final String DEVICE_ID = "DEVICE ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class MtiFragmentActivity extends FragmentActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
     }
 
     @Override
@@ -49,5 +55,14 @@ public class MtiFragmentActivity extends FragmentActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void loadAdsView() {
+
+        adView = (AdView) this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(DEVICE_ID)
+                .build();
+        adView.loadAd(adRequest);
     }
 }

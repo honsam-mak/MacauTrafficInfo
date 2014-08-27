@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
 import com.simetech.macautrafficinfo.fragment.RealCamWebFragment;
@@ -29,6 +31,8 @@ public class LiveCamActivity extends MtiFragmentActivity {
 		setContentView(R.layout.activity_camera);
 
         initWheel(R.id.cam_station);
+
+        loadAdsView();
 	}
 
     @Override
