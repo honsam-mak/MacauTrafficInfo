@@ -44,6 +44,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * This listener is used for Android-wheel plugin which listens on scroll events
+     */
     private final OnWheelScrollListener scrolledListener = new OnWheelScrollListener() {
         @Override
         public void onScrollingStarted(WheelView wheel) {
@@ -57,6 +60,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
         }
     };
 
+   /*
+    * This listener is used for Android-wheel plugin which listens on changed event
+    */
     private final OnWheelChangedListener changedListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
@@ -67,6 +73,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
         }
     };
 
+    /*
+     * To update the live camera image.
+     */
     private void updateWebImage(int index) {
 
         Fragment fragment = new RealCamWebFragment();
@@ -77,6 +86,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
 
     }
 
+    /*
+     * To initialize the wheel component.
+     */
     private void initWheel(int id) {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setVisibleItems(5);
@@ -88,6 +100,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
         updateWebImage(0);
     }
 
+    /*
+     * To create a custom adapter for wheel.
+     */
     private class StationAdapter extends AbstractWheelTextAdapter {
 
         private String stations[] = getResources().getStringArray(R.array.camera_arrays);

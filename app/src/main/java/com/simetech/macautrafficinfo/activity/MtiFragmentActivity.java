@@ -64,6 +64,9 @@ public class MtiFragmentActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * To load up the AdsView
+     */
     private void loadAdsView() {
 
         adView = (AdView) this.findViewById(R.id.adView);
