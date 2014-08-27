@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adUnitId="ca-app-pub-6570577673875008/5866528775"
-        ads:adSize="BANNER"/>
+        ads:adSize="SMART_BANNER"/>
 
     <fragment
         android:id="@+id/detourfragment"

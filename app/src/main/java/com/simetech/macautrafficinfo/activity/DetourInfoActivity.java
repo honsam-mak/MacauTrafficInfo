@@ -18,7 +18,6 @@ public class DetourInfoActivity extends MtiFragmentActivity {
         	Fragment list = new DetourArrayListFragment();
         	getSupportFragmentManager().beginTransaction().replace(R.id.detourfragment, list).commit();
         }
-        loadAdsView();
 	}
 
 

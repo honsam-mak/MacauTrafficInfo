@@ -35,6 +35,13 @@ public class MtiFragmentActivity extends FragmentActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        loadAdsView();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -57,7 +64,7 @@ public class MtiFragmentActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void loadAdsView() {
+    private void loadAdsView() {
 
         adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()

@@ -27,12 +27,9 @@ public class LiveCamActivity extends MtiFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_camera);
 
         initWheel(R.id.cam_station);
-
-        loadAdsView();
 	}
 
     @Override

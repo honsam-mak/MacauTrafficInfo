@@ -18,7 +18,5 @@ public class ParkingInfoActivity extends MtiFragmentActivity {
             Fragment list = new ParkingInfoArrayListFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.parkingfragment, list).commit();
         }
-
-        loadAdsView();
 	}
 }
