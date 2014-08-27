@@ -15,8 +15,8 @@ public class ParkingInfoActivity extends MtiFragmentActivity {
 		
         // Create the list fragment and add it as our sole content.
         if (getFragmentManager().findFragmentById(R.id.parkingfragment) == null) {
-            Fragment list = new ParkingInfoArrayListFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.parkingfragment, list).commit();
+            Fragment listFragment = new ParkingInfoArrayListFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.parkingfragment, listFragment).commit();
         }
 	}
 }

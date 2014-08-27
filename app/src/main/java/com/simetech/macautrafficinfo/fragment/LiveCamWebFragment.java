@@ -73,21 +73,6 @@ public class LiveCamWebFragment extends Fragment {
 				wv.loadData(image, "text/html", "utf-8");
 			}
 			
-//			new Timer().schedule(new TimerTask(){
-//				@Override
-//				public void run() {			
-//					Activity activity = getActivity();
-//					if (activity != null) {
-//						activity.runOnUiThread(new Runnable() {
-//							public void run() {
-//								wv.reload();
-//							}
-//						});
-//					} else
-//						cancel();
-//				}
-//			}, 0, 5000);
-			
 			new Timer().schedule(new TimerTask(){
 				int counter = 0;
 				@Override

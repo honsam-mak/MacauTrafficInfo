@@ -15,8 +15,8 @@ public class DetourInfoActivity extends MtiFragmentActivity {
 
         // Create the list fragment and add it as our sole content.
         if (getFragmentManager().findFragmentById(R.id.detourfragment) == null) {
-        	Fragment list = new DetourArrayListFragment();
-        	getSupportFragmentManager().beginTransaction().replace(R.id.detourfragment, list).commit();
+        	Fragment listFragment = new DetourArrayListFragment();
+        	getSupportFragmentManager().beginTransaction().replace(R.id.detourfragment, listFragment).commit();
         }
 	}
 
