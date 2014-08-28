@@ -33,5 +33,4 @@
         android:text="@string/detour" 
         android:layout_weight="1"
  		android:textSize="24sp"/>
-    
 </LinearLayout>
