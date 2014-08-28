@@ -75,8 +75,6 @@ public class DetourDetailFragment extends DialogFragment {
 					if (c.children().size() > 0 && c.child(0).children().size() > 0)
 						summary += "<p>" + c.child(0).child(0).html() + "</p>";
 				}
-								
-//				System.out.println(summary);
 			}
 		}
 				

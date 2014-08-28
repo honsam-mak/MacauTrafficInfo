@@ -12,11 +12,5 @@ public class ParkingInfoActivity extends MtiFragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
-		
-        // Create the list fragment and add it as our sole content.
-        if (getFragmentManager().findFragmentById(R.id.parkingfragment) == null) {
-            Fragment listFragment = new ParkingInfoArrayListFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.parkingfragment, listFragment).commit();
-        }
 	}
 }

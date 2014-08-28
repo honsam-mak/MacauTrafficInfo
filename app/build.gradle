@@ -8,8 +8,8 @@ android {
         applicationId "com.simetech.activity.macautrafficinfo"
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 1434102
-        versionName "1.0.2"
+        versionCode 1434110
+        versionName "1.1.0"
     }
     buildTypes {
         release {

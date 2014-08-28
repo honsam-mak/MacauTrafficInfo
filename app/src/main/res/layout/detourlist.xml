@@ -6,13 +6,24 @@
     
 	<TextView
 	    android:id="@android:id/text1"  
-	    android:paddingTop="6dip" 
-	    android:paddingBottom="6dip" 
+	    android:paddingTop="3dip"
+	    android:paddingBottom="3dip"
 	    android:layout_width="wrap_content" 
 	    android:layout_height="wrap_content" 
 	    android:layout_alignParentLeft="true"
 	    android:layout_toLeftOf="@+id/next"
 	    android:textSize="16sp" />
+
+    <TextView
+        android:id="@android:id/text2"
+        android:paddingTop="3dip"
+        android:paddingBottom="3dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/next"
+        android:layout_below="@android:id/text1"
+        android:textSize="16sp" />
 
 	<ImageView
 	    android:id="@+id/next"

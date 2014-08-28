@@ -33,7 +33,7 @@ public class ParkingInfoArrayListFragment extends ListFragment {
     ArrayList<String> tcs = new ArrayList<String>();
     ArrayList<String> carSpace = new ArrayList<String>();
     ArrayList<String> motorSpace = new ArrayList<String>();
-    static ArrayList<String>[] infos = new ArrayList[4];
+    ArrayList<String>[] infos = new ArrayList[4];
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class ParkingInfoArrayListFragment extends ListFragment {
         
         doFetch();
                     
-        setListAdapter(new customAdapter(getActivity(), R.layout.parkinglist, infos));    
+        setListAdapter(new CustomAdapter(getActivity(), R.layout.parkinglist, infos));    
                     
 		new Timer().schedule(new TimerTask() {
 			@Override
@@ -64,16 +64,14 @@ public class ParkingInfoArrayListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-//        Log.i("FragmentList", "Item clicked: " + id);
     }
     
     public void notifyData() {
-    	setListAdapter(new customAdapter(getActivity(), R.layout.parkinglist, infos));    
+        ((CustomAdapter) getListAdapter()).updateInfo(infos);
     }
     
     private void doFetch() {
-//    	System.out.println("doFetch...");
-    	
+
 		// Extract image from URL
 		Document doc = null;
 		
@@ -96,8 +94,6 @@ public class ParkingInfoArrayListFragment extends ListFragment {
 				tcs.add(items[1] + " " + items[2]);
 				carSpace.add(items[3]);
 				motorSpace.add(items[4]);
-//				for(int i=0; i < items.length; i++)
-//					System.out.println(items[i]);
 			}
 		}	    	    		        
 		
@@ -108,7 +104,7 @@ public class ParkingInfoArrayListFragment extends ListFragment {
 		
     }
 
-    private static class customAdapter extends ArrayAdapter<ArrayList<String>> {
+    private class CustomAdapter extends ArrayAdapter<ArrayList<String>> {
 
         private LayoutInflater mInflater;
         private ArrayList<String> mPlaces = new ArrayList<String>();
@@ -116,20 +112,29 @@ public class ParkingInfoArrayListFragment extends ListFragment {
         private ArrayList<String> mCarSpace = new ArrayList<String>();
         private ArrayList<String> mMotorSpace = new ArrayList<String>();
 
-        static class ViewHolder {
+        class ViewHolder {
             TextView tvPlace;
             TextView tvTc;
             TextView tvCarSpace;
             TextView tvMotorSpace;
         }
 
-        public customAdapter(Context context, int resId, ArrayList<String>[] values) {
+        public CustomAdapter(Context context, int resId, ArrayList<String>[] values) {
             super(context, resId, values);
             mInflater = LayoutInflater.from(context);
             mPlaces = values[0];
             mTcs = values[1];
             mCarSpace = values[2];
             mMotorSpace = values[3];
+        }
+        
+        public void updateInfo(ArrayList<String>[] values) {
+            mPlaces = values[0];
+            mTcs = values[1];
+            mCarSpace = values[2];
+            mMotorSpace = values[3];
+
+            notifyDataSetChanged();
         }
 
         @Override
@@ -168,23 +173,23 @@ public class ParkingInfoArrayListFragment extends ListFragment {
         }
 
         private void setTextViewColor(TextView tv, String value) {
+
             if(!StringUtil.isNumeric(value)) {
-                tv.setTextColor(Color.DKGRAY);
+                tv.setBackgroundColor(Color.DKGRAY);
                 return;
             }
             // red
             if(Integer.parseInt(value) <= 3){
-                tv.setTextColor(Color.RED);
+                tv.setBackgroundColor(Color.RED);
                 return;
             }
             //yellow
             if(Integer.parseInt(value) < 10){
-                tv.setTextColor(Color.rgb(0xf2, 0xf2, 0x66));
+                tv.setBackgroundColor(Color.rgb(0xc2, 0xc2, 0x66));
                 return;
             }
-
             //green
-            tv.setTextColor(Color.rgb(0x22, 0x99, 0x22));
+            tv.setBackgroundColor(Color.rgb(0x22, 0x99, 0x22));
         }
     }
 }

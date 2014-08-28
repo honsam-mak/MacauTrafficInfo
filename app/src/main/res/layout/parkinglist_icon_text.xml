@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="@drawable/gradient_bg" >
-    
+    android:layout_height="match_parent"
+    android:background="@drawable/white_bg">
+
     <TextView android:id="@+id/place"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -20,41 +20,44 @@
 		    android:paddingBottom="6dip"
 		    android:paddingLeft="6dip"
 		    android:gravity="center_vertical"
-		    android:textSize="5pt" />		
+		    android:textSize="5pt" />
+		
 	<TextView android:id="@+id/car"
 			  android:layout_width="40dip"
-			  android:layout_height="wrap_content"
+			  android:layout_height="19dip"
 			  android:layout_alignBaseline="@id/place"
 			  android:layout_alignBottom="@id/place"
-			  android:layout_alignParentRight="true"
-			  android:textSize="6pt"
-			  android:textStyle="bold"
-			  android:textColor="#00AA00"/>
+              android:textSize="7pt"
+			  android:textStyle="normal"
+			  android:textColor="#F0F0F0"
+              android:layout_alignRight="@+id/motor"
+              android:layout_alignEnd="@+id/motor" />
 	
 	<ImageView android:id="@+id/car_icon"
 		       android:layout_width="32dip"
 		       android:layout_height="32dip"
 		       android:layout_alignTop="@+id/place"
 		       android:layout_toLeftOf="@+id/car"
-		       android:paddingTop="6dip" 
+		       android:paddingTop="6dip"
 		       android:src="@drawable/car_64" />
 	
 	<TextView android:id="@+id/motor"
 	    	  android:layout_width="40dip"
-              android:layout_height="28dip"
+              android:layout_height="19dip"
               android:layout_alignBaseline="@id/current_tc"
 			  android:layout_alignBottom="@id/current_tc"
-			  android:layout_alignParentRight="true" 
+			  android:layout_alignParentRight="true"
+              android:layout_marginRight="@dimen/activity_horizontal_margin"
 			  android:gravity="center_vertical"
-			  android:textSize="6pt"
-			  android:textStyle="bold"
-			  android:textColor="#00AA00"/>
+			  android:textSize="7pt"
+			  android:textStyle="normal"
+			  android:textColor="#F0F0F0"/>
 	
 	<ImageView android:id="@+id/motor_icon"
 	           android:layout_width="32dip"
 	           android:layout_height="32dip"
 			   android:layout_alignTop="@id/current_tc"
-			   android:layout_toLeftOf="@id/motor" 
+			   android:layout_toLeftOf="@id/motor"
 			   android:paddingBottom="6dip"
 			   android:src="@drawable/motor_64" />
 	

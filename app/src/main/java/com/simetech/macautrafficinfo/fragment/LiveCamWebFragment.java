@@ -36,8 +36,7 @@ public class LiveCamWebFragment extends Fragment {
 		Document doc = null;
 		String imgURL = null;
 		String url = URL +  Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER));
-//		System.out.println(url);
-		
+
 		try {
 			doc = Jsoup.connect(url).get();
 		} catch (IOException e) {
@@ -48,7 +47,6 @@ public class LiveCamWebFragment extends Fragment {
 			Elements imgs = doc.select("img[src$=.jpg]");
 			for(Element img: imgs) {
 				imgURL = img.attr("src");
-//				System.out.println(imgURL);
 			}
 			
 			final WebView wv = (WebView) mainView.findViewById(R.id.wv);

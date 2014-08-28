@@ -2,9 +2,10 @@ package com.simetech.macautrafficinfo.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.simetech.macautrafficinfo.R;
 
@@ -14,6 +15,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DetourArrayListFragment extends ListFragment {
 	
@@ -25,27 +30,30 @@ public class DetourArrayListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 						
-		String[] data = doFetch();
+        List<Map<String, String>> data = doFetchWebData();
 		
-		if (data != null) {
-			setListAdapter(new ArrayAdapter<String>(getActivity(), 
-												R.layout.detourlist,
-												android.R.id.text1,
-												data));
+		if (!data.isEmpty() && getListAdapter() == null) {
+            SimpleAdapter adapter = new SimpleAdapter(
+                                            getActivity(),
+                                            data,
+                                            R.layout.detourlist,
+                                            new String[] {"period", "content"},
+                                            new int[] {android.R.id.text1, android.R.id.text2}
+                                        );
+            setListAdapter(adapter);
 		}
 	}
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-//        Log.i("DetourArrayListFragment", "Item clicked: " + id);
-        
+
         DetourDetailFragment newFragment = DetourDetailFragment.newInstance(idList[position]);
         newFragment.show(getFragmentManager(), "dialog");
 	}
 	
-	private String[] doFetch() {
+	private List<Map<String, String>> doFetchWebData() {
 		
-		String[] val = null;
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		
 		//Extract image from URL
 		Document doc = null;
@@ -58,19 +66,20 @@ public class DetourArrayListFragment extends ListFragment {
 		
 		if (doc != null) {		
 			Elements cols = doc.select("td.MainContentText a[href]");
-			val = new String[cols.size()];
 			idList = new String[cols.size()];
 			int i = 0;
-			
+
 			for(Element col: cols) {
-				val[i] = col.text();
-				idList[i++] =col.baseUri().substring(0, 26) + col.attr("href").toString();		
-//				System.out.println(col.text());
+                String[] content = col.text().split(",", 2);
+
+                Map map = new HashMap();
+                map.put("period", content[0]);
+                map.put("content", content[1]);
+                list.add(map);
+				idList[i++] =col.baseUri().substring(0, 26) + col.attr("href").toString();
 			}
-			
-			
 		}
-		
-		return val;
+
+        return list;
 	}
 }
