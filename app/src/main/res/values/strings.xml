@@ -4,9 +4,9 @@
     <string name="app_name">澳門交通資訊</string>
     <string name="app_title">交通資訊@Macau</string>
     <string name="action_about">關於</string>
-    <string name="camera">路面即時資訊</string>
-    <string name="parking">停車場即時資訊</string>
-    <string name="detour">交通改道資訊</string>
+    <string name="camera">路　況</string>
+    <string name="parking">停　車　場</string>
+    <string name="detour">交 通 改 道</string>
 
     <string-array name="camera_arrays">
         <item>新馬路與巴素打爾古街交界</item>

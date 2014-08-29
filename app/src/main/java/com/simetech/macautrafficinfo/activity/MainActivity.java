@@ -19,7 +19,6 @@ import com.simetech.macautrafficinfo.R;
 import com.simetech.macautrafficinfo.controller.NetworkController;
 import com.simetech.macautrafficinfo.fragment.AboutFragment;
 
-
 public class MainActivity extends Activity {
 
 	private boolean isNetworkConnected = false;

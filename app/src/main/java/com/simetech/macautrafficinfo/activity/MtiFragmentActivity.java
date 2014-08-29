@@ -71,6 +71,7 @@ public class MtiFragmentActivity extends FragmentActivity {
 
         adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
                 .addTestDevice(DEVICE_ID)
                 .build();
         adView.loadAd(adRequest);
